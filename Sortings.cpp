@@ -1,7 +1,6 @@
 #include<iostream>
 using namespace std;
 
-
 // -------------------------------------------------------------------------- //
 // Algorithm Name - BubbleSort
 //		worst O(n*n) average O(n*n) best O(n) // when sorted
@@ -117,7 +116,6 @@ size_t partition(int* arr, size_t i, size_t j)
 		}
 	}
 	return i;
-
 }
 
 void quickSort(int* arr, size_t left, size_t right)
@@ -134,10 +132,6 @@ void quickSort(int* arr, size_t left, size_t right)
 }
 
 
-
-
-
-
 int main()
 {
 
@@ -149,8 +143,6 @@ int main()
 		cout << arr[i] << " ";
 	}
 	cout << endl;
-
-
 
 	return 0;
 }
