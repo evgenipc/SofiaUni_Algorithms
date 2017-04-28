@@ -90,6 +90,50 @@ void insertionSort(int* arr, size_t n)
 	}
 }
 
+// -------------------------------------------------------------------------- //
+// Algorithm Name - Quck sort
+//		Quick sort + Partition function 
+// -------------------------------------------------------------------------- //
+
+//  Partion with MIDDLE pivot
+size_t partition(int* arr, size_t i, size_t j)
+{
+	const size_t mid = (i+j) / 2 ;
+	const size_t pivot = arr[mid];
+
+	while (i <= j) 
+	{
+		while (arr[i] < pivot) 
+			i++;
+		while (arr[j] > pivot) 
+			j--;
+		if (i <= j) 
+		{
+			int tmp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = tmp;
+			i++;
+			j--;
+		}
+	}
+	return i;
+
+}
+
+void quickSort(int* arr, size_t left, size_t right)
+{
+	if (!arr || right-1<=left)
+		return;
+
+	size_t part = partition(arr, left, right);
+
+	if(left <part-1)
+		quickSort(arr,left,part-1);
+	if (part <right)
+		quickSort(arr,part,right);
+}
+
+
 
 
 
@@ -100,7 +144,7 @@ int main()
 	int arr[] = { 5,1,2,5,7,3,8,9,3,24,64,2,4,6 };
 
 	insertionSort(arr, 14);
-	for (int i = 0; i < 14; ++i)
+	for (size_t i = 0; i < 14; ++i)
 	{
 		cout << arr[i] << " ";
 	}
