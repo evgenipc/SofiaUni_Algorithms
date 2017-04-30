@@ -131,6 +131,59 @@ void quickSort(int* arr, size_t left, size_t right)
 		quickSort(arr,part,right);
 }
 
+// -------------------------------------------------------------------------- //
+// Algorithm Name - Merge Sort
+// -------------------------------------------------------------------------- //
+
+void mergeStep(int*, int*, size_t);
+void merging(int*, int*, size_t, size_t, int*);
+void mergeSort(int* arr, const size_t n)
+{
+	if (!arr || n<=1)
+		return;
+
+	int* tmp = new int[n];
+
+	mergeStep(arr, tmp, n);
+
+	delete[] tmp;
+}
+
+void mergeStep(int* arr, int* tmp, const size_t n)
+{
+	if (n <= 1)
+		return;
+	size_t mid = n / 2;
+
+	mergeStep(arr, tmp, mid);
+	mergeStep(arr + mid, tmp + mid, n - mid);
+
+	merging(arr, arr + mid, mid , n - mid, tmp);
+
+	for (size_t i = 0; i < n; i++)
+		arr[i] = tmp[i];
+
+}
+void merging(int* arrA, int* arrB, size_t sizeA, size_t sizeB, int* result)
+{
+	size_t i = 0;
+	size_t ia = 0;
+	size_t ib = 0;
+
+	while (ia < sizeA && ib < sizeB)
+	{
+		if (arrA[ia] < arrB[ib])
+			result[i++] = arrA[ia++];
+		else
+			result[i++] = arrB[ib++];
+	}
+	while (ia < sizeA)
+		result[i++] = arrA[ia++];
+	while (ib < sizeB)
+		result[i++] = arrB[ib++];
+}
+
+
 
 int main()
 {
