@@ -9,27 +9,22 @@ using namespace std;
 
 void bubbleSort(int* arr, size_t n)
 {
-	if (!arr || n == 0)
+	if(!arr || n==0)
 		return;
-
 	bool swapped = true;
-
-	while (swapped)
+	for (size_t i = 0; i < n && swapped; ++i)
 	{
 		swapped = false;
-
-		for (size_t i = 0; i<n; ++i)
-			for (size_t j = n - 1; j > i; --j)
+		for (size_t j = n - 1; j > i; --j)
+		{
+			if (arr[j] < arr[j - 1])
 			{
-				if (arr[j - 1] > arr[j])
-				{
-					int tmp = arr[j - 1];
-					arr[j - 1] = arr[j];
-					arr[j] = tmp;
-
-					swapped = true;
-				}
+				int tmp = arr[j - 1];
+				arr[j - 1] = arr[j];
+				arr[j] = tmp;
+				swapped = true;
 			}
+		}
 	}
 }
 
