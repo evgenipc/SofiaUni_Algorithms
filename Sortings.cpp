@@ -180,6 +180,53 @@ void merging(int* arrA, int* arrB, size_t sizeA, size_t sizeB, int* result)
 
 
 
+// -------------------------------------------------------------------------- //
+// Algorithm Name - Quick Select
+// -------------------------------------------------------------------------- //
+
+int partition2(int* arr, int start, int end) {
+	int pivotIndex = start;
+	int index = start + 1;
+	int tmp;
+	for (int i = start + 1; i <= end; i++) {
+		if (arr[i] < arr[start]) {
+			tmp = arr[index];
+			arr[index] = arr[i];
+			arr[i] = tmp;
+			index++;
+		}
+	}
+	--index;
+	tmp = arr[index];
+	arr[index] = arr[start];
+	arr[start] = tmp;
+
+	return index;
+}
+
+int quickSelect(int* arr, size_t n, const size_t k)
+{
+	int start = 0;
+	int end = n - 1;
+	int pivotIndex;
+
+	while (start <= end)
+	{
+		pivotIndex = partition2(arr, start, end);
+
+		if (pivotIndex < k - 1)
+			start = pivotIndex + 1;
+		else if (pivotIndex > k - 1)
+			end = pivotIndex - 1;
+		else
+			return arr[k - 1];
+	}
+	return arr[k - 1];
+}
+
+
+
+
 int main()
 {
 
