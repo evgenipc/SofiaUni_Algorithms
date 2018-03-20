@@ -95,13 +95,13 @@ size_t partition(int* arr, size_t i, size_t j)
 	const size_t mid = (i+j) / 2 ;
 	const size_t pivot = arr[mid];
 
-	while (i <= j) 
+	while (i < j) 
 	{
 		while (arr[i] < pivot) 
-			i++;
-		while (arr[j] > pivot) 
-			j--;
-		if (i <= j) 
+			++i;
+		while (arr[j] >= pivot) 
+			--j;
+		if (i < j) 
 		{
 			int tmp = arr[i];
 			arr[i] = arr[j];
